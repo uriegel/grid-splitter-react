@@ -5,16 +5,10 @@ import 'grid-splitter-react/dist/index.css'
 
 
 const First = () => (
-    <div>
-        Create React Library Example
-    </div>
+    <div class="left" />
 )
 
-const Second = () => (
-    <div>
-        2
-    </div>
-)
+const Second = () => <div class="right" />
 
 const App = () => {
   return (

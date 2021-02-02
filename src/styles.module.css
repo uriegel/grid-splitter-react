@@ -1,9 +1,23 @@
 /* add css module styles here (optional) */
 
-.test {
-  margin: 2em;
-  padding: 0.5em;
-  border: 2px solid #000;
-  font-size: 2em;
-  text-align: center;
+.splitterGridContainer {
+	display:flex;
+  	flex-grow: 1;
+  	flex-direction: row;
+}
+.splitterGridContainer.isVertical {
+    flex-direction: column;
+}
+.pane {
+    flex-grow: 1;
+    position: relative;
+}
+.paneContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.paneContainer>:first-child {
+    height: 100%;
 }

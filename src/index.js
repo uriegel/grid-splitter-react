@@ -3,12 +3,16 @@ import styles from './styles.module.css'
 
 export const SplitterGrid = props => {
     return (
-		<div className={styles.test}>
-			<div>
-				{props.first}
+		<div className={styles.splitterGridContainer}>
+			<div className={styles.pane}>
+				<div className={styles.paneContainer}>
+					{props.first}
+				</div>
 			</div>
-			<div>
-				{props.second}
+			<div className={styles.pane}>
+				<div className={styles.paneContainer}>
+					{props.second}
+				</div>
 			</div>
 		</div>
 	)

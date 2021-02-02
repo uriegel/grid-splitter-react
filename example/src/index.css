@@ -1,23 +1,28 @@
 :root {
-  --gridsplitter-grip-color: lightgray;
-  --gridsplitter-grip-hover-color: darkgray;
-  --gridsplitter-grip-active-color: #6b6969;
+  	--gridsplitter-grip-color: lightgray;
+  	--gridsplitter-grip-hover-color: darkgray;
+  	--gridsplitter-grip-active-color: #6b6969;
 }
 body {
-  height: 100vh;
-  display:flex;
-  margin: 0px;
-  padding: 0px;
+  	height: 100vh;
+  	display:flex;
+  	margin: 0px;
+  	padding: 0px;
+}
+#root {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
 }
 .root {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+	display: flex;
+  	flex-direction: column;
+  	flex-grow: 1;
 }
 .left {
-  background-color: yellow;
+  	background-color: yellow;
 }
 .right {
-  background-color: red;
+	background-color: red;
 }
 
