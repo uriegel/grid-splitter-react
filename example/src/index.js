@@ -2,6 +2,6 @@ import './index.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import HorizontalTest from './HorizontalTest'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<HorizontalTest />, document.getElementById('root'))
