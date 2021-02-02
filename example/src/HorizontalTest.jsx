@@ -4,16 +4,22 @@ import { SplitterGrid } from 'grid-splitter-react'
 import 'grid-splitter-react/dist/index.css'
 
 
-const First = () => (
-    <div class="left" />
-)
+const First = props => {
+	const call = () => props.d2("Und zurück")
+	return (
+	  	<div className="left" >
+			Das ist: {props.data} 
+			<button onClick = {call}>Klick</button>
+		</div>
+	)
+}
 
-const Second = () => <div class="right" />
+const Second = () => <div className="right" />
 
 const App = () => {
   return (
-    <div class="root">
-        <SplitterGrid first={<First />} second={<Second />}/>
+    <div className="root">
+        <SplitterGrid first={(data, d2) => <First data={data} d2={d2} />} second={data => <Second />}/>
     </div>
   )}
 
