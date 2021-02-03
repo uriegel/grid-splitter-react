@@ -1,6 +1,6 @@
 {
   "name": "grid-splitter-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A grid splitter for React, resizable with splitter grid",
   "author": "uriegel",
   "license": "MIT",
