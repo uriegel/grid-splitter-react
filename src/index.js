@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
 import styles from './styles.module.css'
 
+const Splitter = props => {
+	if (props.isVisible) 
+		return <div className={styles.splitter} onMouseDown={ props.onMouseDown } />
+	else 
+		return null
+}
+
 const SecondView = props => { 
 	if (props.isVisible) 
 		return (
@@ -14,6 +21,12 @@ const SecondView = props => {
 }
 
 export const SplitterGrid = props => {
+	const onSplitterMouseDown = evt => {
+		console.log("On Splitter", evt)
+		if (evt.which != 1)
+			return
+	}
+
 	return (
 		<div className={styles.splitterGridContainer + ' ' + (props.isVertical ? styles.isVertical : '') }>
 			<div className={styles.pane}>
@@ -21,6 +34,7 @@ export const SplitterGrid = props => {
 					{props.first()}
 				</div>
 			</div>
+			<Splitter isVisible={props.isSecondVisible} onMouseDown={onSplitterMouseDown} />
 			<SecondView isVisible={props.isSecondVisible} second={props.second} />
 		</div>
 	)

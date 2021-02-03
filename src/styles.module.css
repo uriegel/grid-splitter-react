@@ -21,3 +21,18 @@
 .paneContainer>:first-child {
     height: 100%;
 }
+.splitter {
+    background-color: var(--gridsplitter-grip-color);
+    transition: background-color 0.4s;
+    flex: 0 0 6px;
+    cursor: ew-resize;
+}
+.isVertical>.splitter {
+    cursor: ns-resize;
+}
+.splitter:hover {
+    background-color: var(--gridsplitter-grip-hover-color);
+}
+.splitter:active {
+    background-color: var(--gridsplitter-grip-active-color);
+}
