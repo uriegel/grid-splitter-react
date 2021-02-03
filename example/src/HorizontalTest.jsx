@@ -3,7 +3,6 @@ import React from 'react'
 import { SplitterGrid } from 'grid-splitter-react'
 import 'grid-splitter-react/dist/index.css'
 
-
 const First = props => {
 	const call = () => props.setSecondInvisible(!props.props.isVisible)
 	return (
@@ -21,5 +20,9 @@ const App = () => {
         <SplitterGrid first={(props, setSecondInvisible) => <First props={props} setSecondInvisible={setSecondInvisible} />} second={() => <Second />}/>
     </div>
   )}
+
+// TODO: SetSecondVisible: from firstSplitter to App, button on top of Splittergrid
+// TODO: Initial second invisible
+// TODO: Button in first view to control second visiblility
 
 export default App
