@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import styles from './styles.module.css'
 
 const Splitter = props => {
@@ -21,6 +21,21 @@ const SecondView = props => {
 }
 
 export const SplitterGrid = props => {
+	const splitterContainer = useRef(null);
+	const [height, setHeight] = useState(0)
+	const [isSecondVisible, setIsSecondVisible] = useState(false)
+
+	useEffect(() => {
+		if (props.isSecondVisible != isSecondVisible) {
+			setIsSecondVisible(props.isSecondVisible)
+			if (props.isSecondVisible && height) {
+				const view2 = splitterContainer.current.children[2] 
+				view2.style.flex = props.isVertical ? `0 0 ${height * splitterContainer.current.clientHeight / 100.0}px` : `0 0 ${height}%`
+			}
+			// TODO Emit Visibilitychanged
+		}
+	})
+
 	const onSplitterMouseDown = sevt => {
 		const evt = sevt.nativeEvent
 		if (evt.which != 1) 
@@ -48,7 +63,7 @@ export const SplitterGrid = props => {
 
 			const procent2 = newSize2 / (newSize2 + newSize1 + 
 				(props.isVertical ? splitter.offsetHeight : splitter.offsetWidth)) * 100
-			// TODO: //////////////// this.height = procent2
+			setHeight(procent2)
 			view1.style.flexGrow = `1`
 			view2.style.flex = 
 				props.isVertical ? `0 0 ${procent2 * containerControl.clientHeight / 100.0}px` : `0 0 ${procent2}%`
@@ -74,7 +89,7 @@ export const SplitterGrid = props => {
 	}
 
 	return (
-		<div className={styles.splitterGridContainer + ' ' + (props.isVertical ? styles.isVertical : '') }>
+		<div ref={splitterContainer} className={styles.splitterGridContainer + ' ' + (props.isVertical ? styles.isVertical : '') }>
 			<div className={styles.pane}>
 				<div className={styles.paneContainer}>
 					{props.first()}
