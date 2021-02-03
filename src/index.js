@@ -15,7 +15,7 @@ const SecondView = props => {
 
 export const SplitterGrid = props => {
 	return (
-		<div className={styles.splitterGridContainer}>
+		<div className={styles.splitterGridContainer + ' ' + (props.isVertical ? styles.isVertical : '') }>
 			<div className={styles.pane}>
 				<div className={styles.paneContainer}>
 					{props.first()}
