@@ -5,11 +5,14 @@ import 'grid-splitter-react/dist/index.css'
 
 
 const First = props => {
-	const call = () => props.d2("Und zurück")
+	const call = () => {
+		console.log("props.isVisible", props, props.props.isVisible)
+		props.d2(!props.props.isVisible)
+	}
 	return (
 	  	<div className="left" >
-			Das ist: {props.data} 
-			<button onClick = {call}>Klick</button>
+			<p>Das ist: {props.data}</p>
+			<p><button onClick = {call}>Klick</button></p>
 		</div>
 	)
 }
@@ -19,7 +22,7 @@ const Second = () => <div className="right" />
 const App = () => {
   return (
     <div className="root">
-        <SplitterGrid first={(data, d2) => <First data={data} d2={d2} />} second={data => <Second />}/>
+        <SplitterGrid first={(data, props, d2) => <First data={data} props={props} d2={d2} />} second={data => <Second />}/>
     </div>
   )}
 

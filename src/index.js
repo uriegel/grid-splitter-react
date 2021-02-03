@@ -1,22 +1,39 @@
 import React from 'react'
 import styles from './styles.module.css'
 
-export const SplitterGrid = props => {
-
-	const callback = text => console.log('Das kommt aus dem Program', text)
-
-    return (
-		<div className={styles.splitterGridContainer}>
-			<div className={styles.pane}>
-				<div className={styles.paneContainer}>
-					{props.first("erster", callback)}
-				</div>
-			</div>
+const SecondView = props => { 
+	if (props.isVisible) 
+		return (
 			<div className={styles.pane}>
 				<div className={styles.paneContainer}>
 					{props.second("zweiter")}
 				</div>
 			</div>
-		</div>
-	)
+		)
+	else return null
+}
+
+export class SplitterGrid extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			isVisible: true
+		}
+	}
+
+	setSecondInvisible = isVisible => this.setState({isVisible})
+
+    render() {
+		return (
+			<div className={styles.splitterGridContainer}>
+				<div className={styles.pane}>
+					<div className={styles.paneContainer}>
+						<span>{this.state.name}</span>
+						{this.props.first("erster", this.state, this.setSecondInvisible)}
+					</div>
+				</div>
+				<SecondView isVisible={this.state.isVisible} second={this.props.second} />
+			</div>
+		)
+	}
 }
