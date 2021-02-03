@@ -21,7 +21,8 @@ const App = () => {
     </div>
   )}
 
-// TODO: SetSecondVisible: from firstSplitter to App, button on top of Splittergrid
+// TODO: SetSecondVisible: from firstSplitter to App, button on top of Splittergrid:
+			// Call child from Parent
 // TODO: Initial second invisible
 // TODO: Button in first view to control second visiblility
 
