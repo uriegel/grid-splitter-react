@@ -32,7 +32,8 @@ export const SplitterGrid = props => {
 				const view2 = splitterContainer.current.children[2] 
 				view2.style.flex = props.isVertical ? `0 0 ${height * splitterContainer.current.clientHeight / 100.0}px` : `0 0 ${height}%`
 			}
-			// TODO Emit Visibilitychanged
+			if (props.visibilityChanged)
+				props.visibilityChanged(props.isSecondVisible)
 		}
 	})
 
@@ -67,7 +68,8 @@ export const SplitterGrid = props => {
 			view1.style.flexGrow = `1`
 			view2.style.flex = 
 				props.isVertical ? `0 0 ${procent2 * containerControl.clientHeight / 100.0}px` : `0 0 ${procent2}%`
-			// TODO: //////////////// this.$emit("splitter-position-changed")
+			if (props.positionChanged)
+				props.positionChanged()
 
 			evt.stopPropagation()
 			evt.preventDefault()
