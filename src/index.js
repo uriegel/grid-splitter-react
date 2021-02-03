@@ -14,15 +14,14 @@ const SecondView = props => {
 }
 
 export const SplitterGrid = props => {
-	const [isSecondVisible, setSecondVisible] = useState(true)
 	return (
 		<div className={styles.splitterGridContainer}>
 			<div className={styles.pane}>
 				<div className={styles.paneContainer}>
-					{props.first(isSecondVisible, setSecondVisible)}
+					{props.first()}
 				</div>
 			</div>
-			<SecondView isVisible={isSecondVisible} second={props.second} />
+			<SecondView isVisible={props.isSecondVisible} second={props.second} />
 		</div>
 	)
 }

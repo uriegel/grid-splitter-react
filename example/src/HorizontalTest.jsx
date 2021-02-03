@@ -6,7 +6,6 @@ import 'grid-splitter-react/dist/index.css'
 const First = props => {
 	const call = () => {
 		props.test()
-		props.setSecondVisible(!props.isSecondVisible)
 	}
 	return (
 	  	<div className="left" >
@@ -18,18 +17,14 @@ const First = props => {
 const Second = () => <div className="right" />
 
 const App = () => {
-	const [greeting, setGreeting] = useState('Hello Function Component!')
+	const [isRightVisible, setRightVisible] = useState(true)
 	const test = () => console.log("Test")
-	const callTest = () => setGreeting("Das ist geändert!")
+	const toggleRight = () => setRightVisible(!isRightVisible)
   	return (
     	<div className="root">
-			<div>{greeting}<button onClick={callTest}>Klick</button> </div>
-        	<SplitterGrid first={(isSecondVisible, setSecondVisible, greeting) => <First isSecondVisible={isSecondVisible} setSecondVisible={setSecondVisible} test={test} />} second={() => <Second />}/>
+			<div>{isRightVisible}<button onClick={toggleRight}>Rechte Ansicht umschalten</button> </div>
+        	<SplitterGrid first={() => <First test={test} />} second={() => <Second />} isSecondVisible={isRightVisible} />
     	</div>
 )}
-
-// TODO: SetSecondVisible: from firstSplitter to App, button on top of Splittergrid:
-// TODO: Initial second invisible
-// TODO: Button in first view to control second visiblility: <First setRightVisible={setRightVisible} props={props} setSecondInvisible={setSecondInvisible} />
 
 export default App
