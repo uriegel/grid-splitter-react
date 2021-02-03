@@ -6,7 +6,7 @@ const SecondView = props => {
 		return (
 			<div className={styles.pane}>
 				<div className={styles.paneContainer}>
-					{props.second("zweiter")}
+					{props.second()}
 				</div>
 			</div>
 		)
@@ -28,8 +28,7 @@ export class SplitterGrid extends React.Component {
 			<div className={styles.splitterGridContainer}>
 				<div className={styles.pane}>
 					<div className={styles.paneContainer}>
-						<span>{this.state.name}</span>
-						{this.props.first("erster", this.state, this.setSecondInvisible)}
+						{this.props.first(this.state, this.setSecondInvisible)}
 					</div>
 				</div>
 				<SecondView isVisible={this.state.isVisible} second={this.props.second} />
