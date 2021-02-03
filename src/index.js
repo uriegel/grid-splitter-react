@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.css'
 
 const SecondView = props => { 
@@ -13,26 +13,16 @@ const SecondView = props => {
 	else return null
 }
 
-export class SplitterGrid extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			isVisible: true
-		}
-	}
-
-	setSecondInvisible = isVisible => this.setState({isVisible})
-
-    render() {
-		return (
-			<div className={styles.splitterGridContainer}>
-				<div className={styles.pane}>
-					<div className={styles.paneContainer}>
-						{this.props.first(this.state, this.setSecondInvisible)}
-					</div>
+export const SplitterGrid = props => {
+	const [isSecondVisible, setSecondVisible] = useState(true)
+	return (
+		<div className={styles.splitterGridContainer}>
+			<div className={styles.pane}>
+				<div className={styles.paneContainer}>
+					{props.first(isSecondVisible, setSecondVisible)}
 				</div>
-				<SecondView isVisible={this.state.isVisible} second={this.props.second} />
 			</div>
-		)
-	}
+			<SecondView isVisible={isSecondVisible} second={props.second} />
+		</div>
+	)
 }
