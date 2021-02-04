@@ -17,20 +17,9 @@ const SecondView = ({ isVisible, second, height }) =>
 	)
 	: null
 
-export const SplitterGrid = props => {
+export const SplitterGrid = ({ first, second, isVertical, isSecondVisible, positionChanged }) => {
 	const splitterContainer = useRef(null);
 	const [height, setHeight] = useState(50)
-	const [isSecondVisible, setIsSecondVisible] = useState(false)
-
-	useEffect(() => {
-		if (props.isSecondVisible != isSecondVisible) {
-			setIsSecondVisible(props.isSecondVisible)
-			if (props.isSecondVisible && height) {
-				const view2 = splitterContainer.current.children[2] 
-				view2.style.flex = props.isVertical ? `0 0 ${height * splitterContainer.current.clientHeight / 100.0}px` : `0 0 ${height}%`
-			}
-		}
-	})
 
 	const onSplitterMouseDown = sevt => {
 		const evt = sevt.nativeEvent
@@ -40,28 +29,25 @@ export const SplitterGrid = props => {
 		const view1 = container[0]
 		const splitter = container[1]
 		const view2 = container[2]
-		const size1 = props.isVertical ? view1.offsetHeight : view1.offsetWidth
-		const size2 = props.isVertical ? view2.offsetHeight : view2.offsetWidth
-		const initialPosition = props.isVertical ? evt.pageY : evt.pageX		
-		const containerControl = evt.target.parentElement
+		const size1 = isVertical ? view1.offsetHeight : view1.offsetWidth
+		const size2 = isVertical ? view2.offsetHeight : view2.offsetWidth
+		const initialPosition = isVertical ? evt.pageY : evt.pageX		
 
 		const onmousemove = evt => {
-			let delta = (props.isVertical ? evt.pageY : evt.pageX) - initialPosition
+			let delta = (isVertical ? evt.pageY : evt.pageX) - initialPosition
 			if (delta < 10 - size1)
 				delta = 10 - size1
-			if (delta > (props.isVertical ? view1.parentElement.offsetHeight : view1.parentElement.offsetWidth) - 10 - size1 - 6)
-				delta = (props.isVertical ? view1.parentElement.offsetHeight : view1.parentElement.offsetWidth) - 10 - size1 - 6
+			if (delta > (isVertical ? view1.parentElement.offsetHeight : view1.parentElement.offsetWidth) - 10 - size1 - 6)
+				delta = (isVertical ? view1.parentElement.offsetHeight : view1.parentElement.offsetWidth) - 10 - size1 - 6
 
 			const newSize1 = size1 + delta
 			const newSize2 = size2 - delta
 
 			const procent2 = newSize2 / (newSize2 + newSize1 + 
-				(props.isVertical ? splitter.offsetHeight : splitter.offsetWidth)) * 100
+				(isVertical ? splitter.offsetHeight : splitter.offsetWidth)) * 100
 			setHeight(procent2)
-			// view2.style.flex = 
-			// 	props.isVertical ? `0 0 ${procent2 * containerControl.clientHeight / 100.0}px` : `0 0 ${procent2}%`
-			if (props.positionChanged)
-				props.positionChanged()
+			if (positionChanged)
+				positionChanged()
 
 			evt.stopPropagation()
 			evt.preventDefault()
@@ -83,14 +69,14 @@ export const SplitterGrid = props => {
 	}
 
 	return (
-		<div ref={splitterContainer} className={styles.splitterGridContainer + ' ' + (props.isVertical ? styles.isVertical : '') }>
+		<div ref={splitterContainer} className={styles.splitterGridContainer + ' ' + (isVertical ? styles.isVertical : '') }>
 			<div className={styles.pane}>
 				<div className={styles.paneContainer}>
-					{props.first()}
+					{first()}
 				</div>
 			</div>
-			<Splitter isVisible={props.isSecondVisible} onMouseDown={onSplitterMouseDown} isVertical={props.isVertical} />
-			<SecondView isVisible={props.isSecondVisible} second={props.second} height={height}/>
+			<Splitter isVisible={isSecondVisible} onMouseDown={onSplitterMouseDown} isVertical={isVertical} />
+			<SecondView isVisible={isSecondVisible} second={second} height={height}/>
 		</div>
 	)
 }
