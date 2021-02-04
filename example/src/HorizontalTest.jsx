@@ -20,13 +20,11 @@ const App = () => {
 	const [isRightVisible, setRightVisible] = useState(true)
 	const test = () => console.log("Test")
 	const toggleRight = () => setRightVisible(!isRightVisible)
-	const visibilityChanged = isVisible => console.log("visibilityChanged", isVisible)
 	const positionChanged = () => console.log("positionChanged")
   	return (
     	<div className="root">
 			<div>{isRightVisible}<button onClick={toggleRight}>Rechte Ansicht umschalten</button> </div>
 			<SplitterGrid 
-				visibilityChanged={visibilityChanged} 
 				first={() => <First test={test} />} 
 				second={() => <Second />} 
 				isSecondVisible={isRightVisible} 

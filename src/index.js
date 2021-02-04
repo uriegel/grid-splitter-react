@@ -1,28 +1,25 @@
 import React, { useEffect, useState, useRef } from 'react'
 import styles from './styles.module.css'
 
-const Splitter = props => {
-	if (props.isVisible) 
-		return <div className={styles.splitter} onMouseDown={ props.onMouseDown } />
-	else 
-		return null
-}
+const Splitter = ({isVisible, onMouseDown}) => 
+	isVisible 
+		? <div className={styles.splitter} onMouseDown={ onMouseDown } />
+		: null
 
-const SecondView = props => { 
-	if (props.isVisible) 
-		return (
-			<div className={styles.pane}>
-				<div className={styles.paneContainer}>
-					{props.second()}
-				</div>
+const SecondView = ({ isVisible, second, height }) =>  
+	isVisible
+	? (
+		<div className={styles.pane} style={{flex: '0 0 ' + height + '%'}}> 
+			<div className={styles.paneContainer}>
+				{second()}
 			</div>
-		)
-	else return null
-}
+		</div>
+	)
+	: null
 
 export const SplitterGrid = props => {
 	const splitterContainer = useRef(null);
-	const [height, setHeight] = useState(0)
+	const [height, setHeight] = useState(50)
 	const [isSecondVisible, setIsSecondVisible] = useState(false)
 
 	useEffect(() => {
@@ -32,8 +29,6 @@ export const SplitterGrid = props => {
 				const view2 = splitterContainer.current.children[2] 
 				view2.style.flex = props.isVertical ? `0 0 ${height * splitterContainer.current.clientHeight / 100.0}px` : `0 0 ${height}%`
 			}
-			if (props.visibilityChanged)
-				props.visibilityChanged(props.isSecondVisible)
 		}
 	})
 
@@ -63,9 +58,8 @@ export const SplitterGrid = props => {
 			const procent2 = newSize2 / (newSize2 + newSize1 + 
 				(props.isVertical ? splitter.offsetHeight : splitter.offsetWidth)) * 100
 			setHeight(procent2)
-			view1.style.flexGrow = `1`
-			view2.style.flex = 
-				props.isVertical ? `0 0 ${procent2 * containerControl.clientHeight / 100.0}px` : `0 0 ${procent2}%`
+			// view2.style.flex = 
+			// 	props.isVertical ? `0 0 ${procent2 * containerControl.clientHeight / 100.0}px` : `0 0 ${procent2}%`
 			if (props.positionChanged)
 				props.positionChanged()
 
@@ -96,7 +90,7 @@ export const SplitterGrid = props => {
 				</div>
 			</div>
 			<Splitter isVisible={props.isSecondVisible} onMouseDown={onSplitterMouseDown} isVertical={props.isVertical} />
-			<SecondView isVisible={props.isSecondVisible} second={props.second} />
+			<SecondView isVisible={props.isSecondVisible} second={props.second} height={height}/>
 		</div>
 	)
 }
