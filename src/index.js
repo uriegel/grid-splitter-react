@@ -42,14 +42,12 @@ export const SplitterGrid = props => {
 		if (evt.which != 1) 
 			return
 		const container = evt.target.parentElement.children
-		console.log(evt.target.parentElement.children) //.target.parent.children)
 		const view1 = container[0]
 		const splitter = container[1]
 		const view2 = container[2]
 		const size1 = props.isVertical ? view1.offsetHeight : view1.offsetWidth
 		const size2 = props.isVertical ? view2.offsetHeight : view2.offsetWidth
 		const initialPosition = props.isVertical ? evt.pageY : evt.pageX		
-		console.log("M", size1, size2, initialPosition)
 		const containerControl = evt.target.parentElement
 
 		const onmousemove = evt => {
