@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.css'
 
 const Splitter = ({isVisible, onMouseDown}) => 
@@ -11,14 +11,13 @@ const SecondView = ({ isVisible, second, height }) =>
 	? (
 		<div className={styles.pane} style={{flex: '0 0 ' + height + '%'}}> 
 			<div className={styles.paneContainer}>
-				{second()}
+				{second}
 			</div>
 		</div>
 	)
 	: null
 
 export const SplitterGrid = ({ first, second, isVertical, isSecondVisible, positionChanged }) => {
-	const splitterContainer = useRef(null);
 	const [height, setHeight] = useState(50)
 
 	const onSplitterMouseDown = sevt => {
@@ -69,10 +68,10 @@ export const SplitterGrid = ({ first, second, isVertical, isSecondVisible, posit
 	}
 
 	return (
-		<div ref={splitterContainer} className={styles.splitterGridContainer + ' ' + (isVertical ? styles.isVertical : '') }>
+		<div className={styles.splitterGridContainer + ' ' + (isVertical ? styles.isVertical : '') }>
 			<div className={styles.pane}>
 				<div className={styles.paneContainer}>
-					{first()}
+					{first}
 				</div>
 			</div>
 			<Splitter isVisible={isSecondVisible} onMouseDown={onSplitterMouseDown} isVertical={isVertical} />

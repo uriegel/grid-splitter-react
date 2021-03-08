@@ -23,7 +23,7 @@ const App = () => {
   	return (
     	<div className="root">
 			<div>{isBottomVisible}<button onClick={toggleRight}>Untere Ansicht umschalten</button> </div>
-        	<SplitterGrid isVertical={true} first={() => <First test={test} />} second={() => <Second />} isSecondVisible={isBottomVisible} />
+        	<SplitterGrid isVertical={true} first={<First test={test} />} second={<Second />} isSecondVisible={isBottomVisible} />
     	</div>
 )}
 

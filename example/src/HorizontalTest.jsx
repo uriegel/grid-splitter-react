@@ -25,8 +25,8 @@ const App = () => {
     	<div className="root">
 			<div>{isRightVisible}<button onClick={toggleRight}>Rechte Ansicht umschalten</button> </div>
 			<SplitterGrid 
-				first={() => <First test={test} />} 
-				second={() => <Second />} 
+				first={<First test={test} />} 
+				second={<Second />} 
 				isSecondVisible={isRightVisible} 
 				positionChanged={positionChanged} />
     	</div>
