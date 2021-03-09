@@ -27,7 +27,7 @@ const App = () => {
 			<SplitterGrid 
 				first={<First test={test} />} 
 				second={<Second />} 
-				isSecondVisible={isRightVisible} 
+				isSecondInvisible={!isRightVisible} 
 				positionChanged={positionChanged} />
     	</div>
 )}

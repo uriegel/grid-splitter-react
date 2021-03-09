@@ -17,7 +17,7 @@ const SecondView = ({ isVisible, second, height }) =>
 	)
 	: null
 
-export const SplitterGrid = ({ first, second, isVertical, isSecondVisible, positionChanged }) => {
+export const SplitterGrid = ({ first, second, isVertical, isSecondInvisible, positionChanged }) => {
 	const [height, setHeight] = useState(50)
 
 	const onSplitterMouseDown = sevt => {
@@ -74,8 +74,8 @@ export const SplitterGrid = ({ first, second, isVertical, isSecondVisible, posit
 					{first}
 				</div>
 			</div>
-			<Splitter isVisible={isSecondVisible} onMouseDown={onSplitterMouseDown} isVertical={isVertical} />
-			<SecondView isVisible={isSecondVisible} second={second} height={height}/>
+			<Splitter isVisible={!isSecondInvisible} onMouseDown={onSplitterMouseDown} isVertical={isVertical} />
+			<SecondView isVisible={!isSecondInvisible} second={second} height={height}/>
 		</div>
 	)
 }

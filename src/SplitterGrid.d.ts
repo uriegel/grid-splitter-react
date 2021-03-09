@@ -3,8 +3,8 @@
 export declare type SplitterGridProps = {
     first: JSX.Element
     second: JSX.Element
-    isVertical: boolean
-    isSecondVisible: boolean
-    positionChanged: ()=>void
+    isVertical?: boolean
+    isSecondInvisible?: boolean
+    positionChanged?: ()=>void
 }
-export declare const SplitterGrid: ({ first, second, isVertical, isSecondVisible, positionChanged }: SplitterGridProps) => JSX.Element
+export declare const SplitterGrid: ({ first, second, isVertical, isSecondInvisible, positionChanged }: SplitterGridProps) => JSX.Element
