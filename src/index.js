@@ -60,11 +60,6 @@ export const SplitterGrid = ({ first, second, isVertical, isSecondInvisible, pos
 			evt.preventDefault()
 		}
 
-		useEffect(() => {
-			if (positionChanged)
-				positionChanged()
-		}, [isSecondInvisible])
-
 		window.addEventListener('mousemove', onmousemove, true)
 		window.addEventListener('mouseup', onmouseup, true)
 
