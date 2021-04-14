@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 
 const Splitter = ({isVisible, onMouseDown}) => 
@@ -59,6 +59,8 @@ export const SplitterGrid = ({ first, second, isVertical, isSecondInvisible, pos
 			evt.stopPropagation()
 			evt.preventDefault()
 		}
+
+		useEffect(positionChanged, [isSecondInvisible])
 
 		window.addEventListener('mousemove', onmousemove, true)
 		window.addEventListener('mouseup', onmouseup, true)
